@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Data Anak</title>
+    <link rel="stylesheet" href="/assets/form.css" />
+  </head>
+  <body>
+    <div class="container-tiner">
+      <h1 class="form-tittle">Formulir Data Anak</h1>
+      <form name="tambah">
+        <div class="main-user-info">
+          <div class="user-input-box">
+            <label>Nik Anak</label>
+            <input type="text" name="nik_anak" id="nik-anak" required />
+          </div>
+          <div class="user-input-box">
+            <label for="username">Nama Lengkap</label>
+            <input type="text" name="nama" id="nama" required />
+          </div>
+          <div class="user-input-box">
+            <label>Umur</label>
+            <input type="text" name="umur" id="umur" required />
+          </div>
+          <div class="user-input-box">
+            <label>Jenis Kelamin</label>
+            <input
+              type="text"
+              name="jenis_kelamin"
+              id="jenis-kelamin"
+              required
+            />
+          </div>
+        </div>
+        <div class="form-submit-btn">
+          <button href="../anak/tampil.html">SIMPAN</button>
+        </div>
+      </form>
+    </div>
+
+    <script>
+      document.tambah.onsubmit = (e) => {
+        e.preventDefault();
+        const nik_anak = document.tambah.nik_anak.value;
+        const nama = document.tambah.nama.value;
+        const umur = document.tambah.umur.value;
+        const jenis_kelamin = document.tambah.jenis_kelamin.value;
+        fetch("/api/tambah", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            nik_anak,
+            nama,
+            umur,
+            jenis_kelamin,
+          }),
+        });
+        location.href = "../anak/tampil.html";
+      };
+    </script>
+  </body>
+</html>
